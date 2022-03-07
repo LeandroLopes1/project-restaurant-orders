@@ -10,7 +10,15 @@ class TrackOrders:
         return self.ordes
 
     def get_most_ordered_dish_per_costumer(self, costumer):
-        pass
+        self.costumer = costumer
+        self.dish_count = {}
+        for costumer, order, day in self.ordes:
+            if costumer == self.costumer:
+                if order in self.dish_count:
+                    self.dish_count[order] += 1
+                else:
+                    self.dish_count[order] = 1
+        return max(self.dish_count, key=self.dish_count.get)
 
     def get_never_ordered_per_costumer(self, costumer):
         pass
